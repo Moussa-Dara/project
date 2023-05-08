@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/src/features/Home_screen/Home_Page.dart';
+import 'package:project/src/features/Home_screen/Search_Page.dart';
 import 'src/features/authentification/screens/login/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> {
             
           ),
         //Naviguer entre les pages
-        body: const [ LoginScreen()][_currentIndex],
+        body: const [Home_Page(), Search_Page(), LoginScreen()][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (index) => setCurrentIndex(index),
