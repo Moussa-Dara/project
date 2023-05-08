@@ -12,9 +12,9 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
               decoration: const InputDecoration(
