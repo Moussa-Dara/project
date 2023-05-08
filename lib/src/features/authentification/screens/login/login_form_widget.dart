@@ -40,7 +40,7 @@ class LoginForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                  onPressed: () {}, child: const Text(tForgetPassword)),
+                  onPressed: () {}, child: const Text(tForgetPassword, style: TextStyle(color: Colors.green)),),
             ),
             SizedBox(
               width: double.maxFinite,
@@ -48,6 +48,25 @@ class LoginForm extends StatelessWidget {
                 onPressed: () {},
                 child: Text(tLogin.toUpperCase()),
               ),
+            ),
+            const SizedBox(height: 26),
+            
+            Column(
+              children: [
+                GestureDetector(
+                  child: 
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Je n'ai pas de compte, m'inscrire",
+                        style: 
+                          TextStyle(
+                            color: Colors.green,decoration: TextDecoration.underline,
+                          ),
+                      ),
+                    )
+                ),
+              ],
             ),
           ],
         ),
