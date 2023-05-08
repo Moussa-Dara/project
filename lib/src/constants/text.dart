@@ -35,7 +35,7 @@ const String tWelcomeSubTitle = "Let's put your creativity on the development hi
 
 
 // -- Login Screen Text
-const String tLoginTitle = "Welcome Back,";
+const String tLoginTitle = "SE CONNECTER";
 const String tLoginSubTitle = "Make it work, make it right, make it fast.";
 const String tRememberMe = "Remember Me?";
 const String tDontHaveAnAccount = "Don't have an Account? ";
