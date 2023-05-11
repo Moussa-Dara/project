@@ -16,11 +16,17 @@ class LoginForm extends StatelessWidget {
         child: Column(
            mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
+           /* TextFormField(
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person_outline_outlined),
                   labelText: tEmail,
                   hintText: tEmail,
+                  border: OutlineInputBorder()),
+            ),*/   
+            TextFormField(
+              decoration: const InputDecoration(
+                  label: Text(tPhoneNo), 
+                  prefixIcon: Icon(Icons.numbers), 
                   border: OutlineInputBorder()),
             ),
             const SizedBox(height: tFormHeight - 20),

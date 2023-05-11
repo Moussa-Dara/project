@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../constants/text.dart';
 
-class LoginHeaderWidget extends StatelessWidget {
-  const LoginHeaderWidget({Key? key}) : super(key: key);
+class SignUpHeaderWidget extends StatelessWidget {
+  const SignUpHeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class LoginHeaderWidget extends StatelessWidget {
       children: [
         const Align(
           alignment: Alignment.center,
-          child: Text(tLoginTitle,
+          child: Text("S'INSCRIRE",
               style: TextStyle(fontSize: 30, color: Colors.green)),
         )
       ],
