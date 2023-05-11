@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../constants/text.dart';
 import '../../../../constants/sizes.dart';
+import '../signup/signup_screen.dart';
 
 
 class LoginForm extends StatelessWidget {
@@ -70,7 +71,14 @@ class LoginForm extends StatelessWidget {
                             color: Colors.green,decoration: TextDecoration.underline,
                           ),
                       ),
-                    )
+                      
+                    ),
+                    onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                        );
+                      },
                 ),
               ],
             ),
