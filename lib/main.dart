@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/src/features/Home_screen/Home_Page.dart';
 import 'package:project/src/features/Home_screen/Search_Page.dart';
-import 'package:project/src/features/authentification/screens/signup/signup_screen.dart';
 import 'src/features/authentification/screens/login/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
