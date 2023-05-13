@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/src/features/authentification/models/user_model.dart';
 import '../../../../../constants/sizes.dart';
 import '../../../../../constants/text.dart';
 import '../../../controllers/signUp_controller.dart';
@@ -18,7 +19,7 @@ class SignUpFormWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
       child: Form(
-          key: formKey,
+        key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,9 +53,13 @@ class SignUpFormWidget extends StatelessWidget {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     // SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
-                    SignUpController.instance
-                        .phoneAuthentication(controller.phoneNo.text.trim());
-                    Get.to(() => const OTPScreen());
+                    final user = UserModel(
+                        fullName: controller.fullName.text.trim(),
+                        password: controller.password.text.trim(),
+                        phoneNo: controller.phoneNo.text.trim()
+                        );
+
+                    SignUpController.instance.createUser(user);
                   }
                 },
                 child: Text(tSignup.toUpperCase()),
