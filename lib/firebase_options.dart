@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '370761910382',
     projectId: 'carloc-a2019',
     storageBucket: 'carloc-a2019.appspot.com',
+    androidClientId: '370761910382-4jj0ia0766soqenj1uflnoathic2rqsu.apps.googleusercontent.com',
     iosClientId: '370761910382-g1o62t5f5fs79sfae4kdbssr389qol26.apps.googleusercontent.com',
     iosBundleId: 'com.example.project',
   );

@@ -1,11 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project/src/features/Home_screen/Home_Page.dart';
 import 'package:project/src/features/Home_screen/Search_Page.dart';
-import 'package:project/src/features/authentification/screens/signup/signup_screen.dart';
+import 'package:project/src/repository/authentification_repository/authentification_repository.dart';
+import 'firebase_options.dart';
 import 'src/features/authentification/screens/login/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+  .then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
 
@@ -31,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
