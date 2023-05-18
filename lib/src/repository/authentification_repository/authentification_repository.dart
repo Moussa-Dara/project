@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/src/features/authentification/screens/profile/profilePage.dart';
 
-import '../../features/authentification/screens/dashboard/dashboard.dart';
-
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 

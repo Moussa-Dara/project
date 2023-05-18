@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project/src/features/authentification/screens/dashboard/dashboard.dart';
+import 'package:project/src/features/authentification/screens/profile/profilePage.dart';
 
 import '../../../repository/authentification_repository/authentification_repository.dart';
 
@@ -8,7 +8,7 @@ class OTPController extends GetxController {
 
   void verifyOTP(String otp) async {
     var isVerified = await AuthenticationRepository.instance.verifyOTP(otp);
-    isVerified ? Get.offAll(const Dashboard()) : Get.back();
+    isVerified ? Get.offAll(const ProfilePage()) : Get.back();
   }
 
 
