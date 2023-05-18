@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         //Naviguer entre les pages
-        body: const [HomePage(), Search_Page(), LoginScreen()][_currentIndex],
+        body: const [HomePage(), Search_Page(), ProfilePage()][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (index) => setCurrentIndex(index),

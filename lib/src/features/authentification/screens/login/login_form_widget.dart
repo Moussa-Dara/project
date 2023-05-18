@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:project/src/features/authentification/controllers/user_controller.dart';
 import 'package:project/src/repository/authentification_repository/authentification_repository.dart';
 import '../../../../constants/text.dart';
 import '../../../../constants/sizes.dart';
@@ -11,6 +13,8 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    final UserController userController = Get.find<UserController>();
     final phoneController = TextEditingController();
     final passwordController = TextEditingController();
 
@@ -56,7 +60,8 @@ class LoginForm extends StatelessWidget {
                 onPressed: () {
                   String phoneNo = phoneController.text;
                   String password = passwordController.text;
-                  AuthenticationRepository.instance.signInWithPhoneNumber(phoneNo, password);
+                   UserController.instance.login(phoneNo, password);
+                
                 },
                 child: Text(tLogin.toUpperCase()),
               ),
