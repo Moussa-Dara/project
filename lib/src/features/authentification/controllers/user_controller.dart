@@ -27,7 +27,7 @@ bool get isConnected => user.value.isConnected;
     if (querySnapshot.docs.isNotEmpty) {
       final userData = querySnapshot.docs.first.data();
       if (userData['Password'] == password) {
-    user.value = User(isConnected: true, profile: 'John Doe');
+    user.value = User(isConnected: true, profile: userData['FullName']);
        // Get.to(() => const ProfilePage());
       } else {
         Get.snackbar("Error", "Something went erong. Try again",

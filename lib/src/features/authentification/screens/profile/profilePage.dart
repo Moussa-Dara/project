@@ -29,9 +29,9 @@ class ProfilePage extends StatelessWidget {
                           radius: 50.0,
                         ),
                         const SizedBox(height: 10.0),
-                        const Text(
-                          'Nom de l\'utilisateur',
-                          style: TextStyle(
+                         Text(
+                          userController.user.value.profile,
+                          style: const TextStyle(
                               fontSize: 20.0, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 20.0),
@@ -48,7 +48,8 @@ class ProfilePage extends StatelessWidget {
                                     Icons.edit,
                                     color: Colors.green,
                                   ),
-                                  title: const Text('Modifier le profil'),
+                                  title:
+                                      const Text('Modifier Mon Profil'),
                                   onTap: () {
                                     // Action pour modifier le profil
                                   },

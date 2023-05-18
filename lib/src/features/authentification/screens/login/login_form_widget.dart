@@ -81,11 +81,12 @@ class LoginForm extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(
+                   /* Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUpScreen()),
-                    );
+                    );*/
+                    const SignUpScreen();
                   },
                 ),
               ],
