@@ -17,7 +17,7 @@ class SignUpScreen extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'CarLoc',
-              style: GoogleFonts.satisfy(textStyle: TextStyle(fontSize: 35), color: Colors.black) ,
+              style: GoogleFonts.satisfy(textStyle: const TextStyle(fontSize: 35), color: Colors.black) ,
             ),
             
           ),

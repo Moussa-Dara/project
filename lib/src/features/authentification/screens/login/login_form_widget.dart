@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project/src/repository/authentification_repository/authentification_repository.dart';
 import '../../../../constants/text.dart';
 import '../../../../constants/sizes.dart';
 import '../signup/signup_screen.dart';
-
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -11,27 +11,25 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final phoneController = TextEditingController();
+    final passwordController = TextEditingController();
+
     return Form(
       child: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
-           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           /* TextFormField(
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.person_outline_outlined),
-                  labelText: tEmail,
-                  hintText: tEmail,
-                  border: OutlineInputBorder()),
-            ),*/   
             TextFormField(
+              controller: phoneController,
               decoration: const InputDecoration(
-                  label: Text(tPhoneNo), 
-                  prefixIcon: Icon(Icons.numbers), 
+                  label: Text(tPhoneNo),
+                  prefixIcon: Icon(Icons.numbers),
                   border: OutlineInputBorder()),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: passwordController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.fingerprint),
                 labelText: tPassword,
@@ -47,38 +45,43 @@ class LoginForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                  onPressed: () {}, child: const Text(tForgetPassword, style: TextStyle(color: Colors.green)),),
+                onPressed: () {},
+                child: const Text(tForgetPassword,
+                    style: TextStyle(color: Colors.green)),
+              ),
             ),
             SizedBox(
               width: double.maxFinite,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  String phoneNo = phoneController.text;
+                  String password = passwordController.text;
+                  AuthenticationRepository.instance.signInWithPhoneNumber(phoneNo, password);
+                },
                 child: Text(tLogin.toUpperCase()),
               ),
             ),
             const SizedBox(height: 26),
-            
             Column(
               children: [
                 GestureDetector(
-                  child: 
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Je n'ai pas de compte, m'inscrire",
-                        style: 
-                          TextStyle(
-                            color: Colors.green,decoration: TextDecoration.underline,
-                          ),
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Je n'ai pas de compte, m'inscrire",
+                      style: TextStyle(
+                        color: Colors.green,
+                        decoration: TextDecoration.underline,
                       ),
-                      
                     ),
-                    onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const SignUpScreen()),
-                        );
-                      },
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
+                    );
+                  },
                 ),
               ],
             ),

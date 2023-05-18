@@ -47,11 +47,11 @@ class _MyAppState extends State<MyApp> {
             // ignore: prefer_const_constructors
             title: Text(
               'CarLoc',
-              style: GoogleFonts.satisfy(textStyle: TextStyle(fontSize: 35), color: Colors.black) ,
+              style: GoogleFonts.satisfy(textStyle: const TextStyle(fontSize: 35), color: Colors.black) ,
             ),
           ),
         //Naviguer entre les pages
-        body: const [Home_Page(), Search_Page(), LoginScreen()][_currentIndex],
+        body: const [HomePage(), Search_Page(), LoginScreen()][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (index) => setCurrentIndex(index),
