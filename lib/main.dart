@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/src/features/Home_screen/Home_Page.dart';
 import 'package:project/src/features/Home_screen/Search_Page.dart';
+import 'package:project/src/features/authentification/screens/profile/profilePage.dart';
 import 'package:project/src/repository/authentification_repository/authentification_repository.dart';
 import 'firebase_options.dart';
 import 'src/features/authentification/screens/login/login_screen.dart';

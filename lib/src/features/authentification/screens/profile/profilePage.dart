@@ -103,9 +103,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-
-void main() {
-  runApp(MaterialApp(
-    home: ProfilePage(),
-  ));
-}
