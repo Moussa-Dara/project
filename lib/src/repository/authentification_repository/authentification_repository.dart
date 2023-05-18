@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/src/features/authentification/screens/profile/profilePage.dart';
 
 import '../../features/authentification/screens/dashboard/dashboard.dart';
 
@@ -53,7 +54,7 @@ class AuthenticationRepository extends GetxController {
     if (querySnapshot.docs.isNotEmpty) {
       final userData = querySnapshot.docs.first.data();
       if (userData['Password'] == password) {
-        Get.to(() => const Dashboard());
+        Get.to(() => ProfilePage());
       } else {
           Get.snackbar("Error", "Something went erong. Try again",
           snackPosition: SnackPosition.BOTTOM,
