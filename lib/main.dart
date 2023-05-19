@@ -6,7 +6,6 @@ import 'package:project/src/features/Home_screen/Search_Page.dart';
 import 'package:project/src/features/authentification/screens/profile/profilePage.dart';
 import 'package:project/src/repository/authentification_repository/authentification_repository.dart';
 import 'firebase_options.dart';
-import 'src/features/authentification/screens/login/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {

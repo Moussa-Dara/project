@@ -1,12 +1,11 @@
 // ignore: file_names
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/src/features/authentification/controllers/user_controller.dart';
-import 'package:project/src/features/authentification/controllers/user_controller.dart';
 import 'package:project/src/features/authentification/screens/login/login_screen.dart';
 
-import '../../../../repository/authentification_repository/authentification_repository.dart';
+import '../annonces/publicationAnnoncePage.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -67,7 +66,10 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   title: const Text('Publier une annonce'),
                                   onTap: () {
-                                    // Action pour publier une annonce
+                                    Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const PublicationAnnoncePage()),
+                                  );
                                   },
                                 ),
                               ),
