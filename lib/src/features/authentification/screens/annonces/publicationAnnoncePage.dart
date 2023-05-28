@@ -34,224 +34,171 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
       body: Form(
           key: _formKey,
           child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: 'Marque',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0)))),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a Marque';
-                    }
-                    return null;
-                  },
-                ),
+          padding: const EdgeInsets.all(8.0),
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Marque',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Modèle',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter an modele';
-                    }
-                    return null;
-                  },
-                ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Veuillez entrer une marque';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8.0),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Modèle',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Année',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter an Année';
-                    }
-                    return null;
-                  },
-                ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Veuillez entrer un modèle';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8.0),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Année',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Kilométrage',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter an Kilométrage';
-                    }
-                    return null;
-                  },
-                ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Veuillez entrer une année';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8.0),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Kilométrage',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: DropdownButtonFormField<String>(
-                  
-                  value: _selectedcarburants,
-                  items: _carburants.map((String carburants) {
-                    return DropdownMenuItem<String>(
-                      value: carburants,
-                      child: Text(carburants)
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedcarburants = newValue;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Type de carburant',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Veuillez entrer un kilométrage';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8.0),
+            DropdownButtonFormField<String>(
+              value: _selectedcarburants,
+              items: _carburants.map((String carburant) {
+                return DropdownMenuItem<String>(
+                  value: carburant,
+                  child: Text(carburant),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedcarburants = newValue;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Type de carburant',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: DropdownButtonFormField<String>(
-                  
-                  value: _selectedtransmission,
-                  items: _transmission.map((String transmission) {
-                    return DropdownMenuItem<String>(
-                      value: transmission,
-                      child: Text(transmission)
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedtransmission = newValue;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Type de transmission',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                ),
+            ),
+            const SizedBox(height: 8.0),
+            DropdownButtonFormField<String>(
+              value: _selectedtransmission,
+              items: _transmission.map((String transmission) {
+                return DropdownMenuItem<String>(
+                  value: transmission,
+                  child: Text(transmission),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedtransmission = newValue;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Type de transmission',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: DropdownButtonFormField<String>(
-                  
-                  value: _selectedStatut,
-                  items: _statuts.map((String statut) {
-                    return DropdownMenuItem<String>(
-                      value: statut,
-                      child: Text(statut)
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedStatut = newValue;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Statut de la voiture',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                ),
+            ),
+            const SizedBox(height: 8.0),
+            DropdownButtonFormField<String>(
+              value: _selectedStatut,
+              items: _statuts.map((String statut) {
+                return DropdownMenuItem<String>(
+                  value: statut,
+                  child: Text(statut),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedStatut = newValue;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Statut de la voiture',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Prix',
-                    border: OutlineInputBorder(
-                      borderRadius:
-                        BorderRadius.all(Radius.circular(20.0)
-                      )
-                    )
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter an Prix';
-                    }
-                    return null;
-                  },
-                ),
+            ),
+            const SizedBox(height: 8.0),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Prix',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: 'Description',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0)))),
-                  keyboardType: TextInputType.multiline,
-                  minLines: 3,
-                  maxLines: 5,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a description';
-                    }
-                    return null;
-                  },
-                ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Veuillez entrer un prix';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8.0),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Description',
+                /*border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),*/
               ),
-
-              const SizedBox(height: 8.0),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                  },
-                  child: const Text('Save'),
-                ),
-              )
-            ],
-          )),
+              keyboardType: TextInputType.multiline,
+              minLines: 2,
+              maxLines: 3,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Veuillez entrer une description';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Enregistrer'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
