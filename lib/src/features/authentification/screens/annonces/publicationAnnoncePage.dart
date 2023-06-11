@@ -1,15 +1,64 @@
 // ignore: file_names
+// ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:dio/dio.dart';
+
 
 class PublicationAnnoncePage extends StatefulWidget {
   const PublicationAnnoncePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _PublicationAnnoncePageState createState() => _PublicationAnnoncePageState();
 }
 
+
+
 class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
+
+
+  void _pickImages() async {
+  List<Asset>? resultList = [];
+
+      try {
+        resultList = await MultiImagePicker.pickImages(
+          maxImages: 5, // Limit maximum of 5 images
+          enableCamera: true, // Enable camera option
+          materialOptions: const MaterialOptions(
+            actionBarTitle: 'Select Images', // Action bar title
+          ),
+        );
+      } catch (e) {
+        print('Error selecting images: $e');
+      }
+
+      if (resultList != null && resultList.isNotEmpty) {
+        List<String> imageUrls = [];
+
+        for (Asset asset in resultList) {
+          String imageUrl = await asset.getByteData().then((byteData) {
+            // Assuming you upload the image and get the URL from the server
+            // Replace this with your actual image upload logic
+            return 'https://example.com/images/${asset.name}';
+          });
+
+          imageUrls.add(imageUrl);
+        }
+
+        setState(() {
+          _selectedImages = imageUrls;
+        });
+      }
+    }
+
+    
+
+  
+  List<String> _selectedImages = [];
+
+
 
    String? _selectedStatut;
   final List<String> _statuts = ['En vente', 'En location', 'Les deux'];
@@ -173,6 +222,32 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
                 return null;
               },
             ),
+
+            ElevatedButton(
+                onPressed: _pickImages,
+                child: Text('Add Images'),
+            ),
+            const SizedBox(height: 16.0),
+    
+          if (_selectedImages.isNotEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Selected Images:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8.0),
+                for (String imageUrl in _selectedImages)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(imageUrl),
+                  ),
+              ],
+            ),
+
+
+
             const SizedBox(height: 8.0),
             TextFormField(
               decoration: const InputDecoration(
