@@ -1,11 +1,13 @@
 // ignore: file_names
 // ignore_for_file: library_private_types_in_public_api
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
-import 'package:dio/dio.dart';
 
+final CollectionReference<Map<String, dynamic>> _voitureCollection =
+    FirebaseFirestore.instance.collection('voitures');
 
 class PublicationAnnoncePage extends StatefulWidget {
   const PublicationAnnoncePage({super.key});
@@ -14,6 +16,12 @@ class PublicationAnnoncePage extends StatefulWidget {
   _PublicationAnnoncePageState createState() => _PublicationAnnoncePageState();
 }
 
+TextEditingController _marqueController = TextEditingController();
+TextEditingController _modeleController = TextEditingController();
+TextEditingController _anneeController = TextEditingController();
+TextEditingController _kilometrageController = TextEditingController();
+TextEditingController _prixController = TextEditingController();
+TextEditingController _descriptionController = TextEditingController();
 
 
 class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
@@ -52,9 +60,6 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
         });
       }
     }
-
-    
-
   
   List<String> _selectedImages = [];
 
@@ -86,6 +91,7 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
           padding: const EdgeInsets.all(8.0),
           children: [
             TextFormField(
+              controller: _marqueController,
               decoration: const InputDecoration(
                 labelText: 'Marque',
                 /*border: OutlineInputBorder(
@@ -101,6 +107,7 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
             ),
             const SizedBox(height: 8.0),
             TextFormField(
+              controller: _modeleController,
               decoration: const InputDecoration(
                 labelText: 'Modèle',
                 /*border: OutlineInputBorder(
@@ -116,6 +123,7 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
             ),
             const SizedBox(height: 8.0),
             TextFormField(
+              controller: _anneeController,
               decoration: const InputDecoration(
                 labelText: 'Année',
                 /*border: OutlineInputBorder(
@@ -131,6 +139,7 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
             ),
             const SizedBox(height: 8.0),
             TextFormField(
+              controller: _kilometrageController,
               decoration: const InputDecoration(
                 labelText: 'Kilométrage',
                 /*border: OutlineInputBorder(
@@ -209,6 +218,7 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
             ),
             const SizedBox(height: 8.0),
             TextFormField(
+              controller: _prixController,
               decoration: const InputDecoration(
                 labelText: 'Prix',
                 /*border: OutlineInputBorder(
@@ -250,6 +260,7 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
 
             const SizedBox(height: 8.0),
             TextFormField(
+              controller: _descriptionController,
               decoration: const InputDecoration(
                 labelText: 'Description',
                 /*border: OutlineInputBorder(
@@ -268,7 +279,40 @@ class _PublicationAnnoncePageState extends State<PublicationAnnoncePage> {
             ),
             const SizedBox(height: 8.0),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      // Create a map of the data to be saved
+                      Map<String, dynamic> data = {
+                        'marque': _marqueController.text,
+                        'modele': _modeleController.text,
+                        'annee': _anneeController.text,
+                        'kilometrage': _kilometrageController.text,
+                        'carburant': _selectedcarburants,
+                        'transmission': _selectedtransmission,
+                        'statut': _selectedStatut,
+                        'prix': _prixController.text,
+                        'description': _descriptionController.text,
+                        'images': _selectedImages,
+                      };
+
+                      // Save the data to Firestore
+                      try {
+                        await _voitureCollection.add(data);
+                        // Clear the form
+                        _formKey.currentState!.reset();
+                        // Clear the selected images
+                        setState(() {
+                          _selectedImages.clear();
+                        });
+                        // Show a success message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Car saved successfully')),
+                        );
+                      } catch (e) {
+                        print('Error saving car: $e');
+                      }
+                    }
+        },
               child: const Text('Enregistrer'),
             ),
           ],
