@@ -1,19 +1,27 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/src/features/Home_screen/Home_Page.dart';
-import 'package:project/src/features/Home_screen/Search_Page.dart';
+import 'package:project/src/features/HomeScreen/homepage.dart';
+import 'package:project/src/features/HomeScreen/Search_Page.dart';
 import 'package:project/src/features/authentification/screens/profile/profilePage.dart';
 import 'package:project/src/repository/authentification_repository/authentification_repository.dart';
 import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+          .then((value) => Get.put(AuthenticationRepository()));
+  runApp(const MyApp());
+}
+/*
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
   .then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
+*/
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

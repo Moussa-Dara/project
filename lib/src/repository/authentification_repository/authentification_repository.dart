@@ -11,8 +11,8 @@ class AuthenticationRepository extends GetxController {
   var verificationId = ''.obs;
 
   
-  @override
-  void onReady() {}
+ // @override
+ // void onReady() {}
 
   Future<void> phoneAuthentification(String phoneNo) async {
     await _auth.verifyPhoneNumber(

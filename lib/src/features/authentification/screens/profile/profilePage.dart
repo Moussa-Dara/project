@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/src/features/authentification/controllers/user_controller.dart';
 import 'package:project/src/features/authentification/screens/login/login_screen.dart';
-
-import '../annonces/publicationAnnoncePage.dart';
+import '../annonces/add_announcement.dart';
 
 
 class ProfilePage extends StatelessWidget {
@@ -68,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                                   onTap: () {
                                     Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const PublicationAnnoncePage()),
+                                    MaterialPageRoute(builder: (context) =>  const AddAnnouncementPage()),
                                   );
                                   },
                                 ),
