@@ -28,43 +28,42 @@ class _AddAnnouncementPageState extends State<AddAnnouncementPage> {
   String marque = '';
   String model = '';
   String annee = '';
-  String kilometrage = '';
   String description = '';
   String carburant = '';
   String transmission = '';
-
+  String contact = '';
 
   final picker = ImagePicker();
 
   void _pickImage() {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Choose Image Source'),
-        content: const Text('Do you want to use the camera or gallery?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context); // Close the dialog
-              _captureImageFromCamera();
-            },
-            child: const Text('Camera'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context); // Close the dialog
-              _pickImageFromGallery();
-            },
-            child: const Text('Gallery'),
-          ),
-        ],
-      );
-    },
-  );
-}
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Choose Image Source'),
+          content: const Text('Do you want to use the camera or gallery?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+                _captureImageFromCamera();
+              },
+              child: const Text('Camera'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+                _pickImageFromGallery();
+              },
+              child: const Text('Gallery'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-Future<void> _captureImageFromCamera() async {
+  Future<void> _captureImageFromCamera() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
 
     if (pickedImage != null) {
@@ -75,9 +74,9 @@ Future<void> _captureImageFromCamera() async {
         imageUrls.add(imageUrl);
       });
     }
-}
+  }
 
-Future<void> _pickImageFromGallery() async {
+  Future<void> _pickImageFromGallery() async {
     final pickedImage = await picker.getImage(source: ImageSource.gallery);
 
     if (pickedImage != null) {
@@ -88,8 +87,7 @@ Future<void> _pickImageFromGallery() async {
         imageUrls.add(imageUrl);
       });
     }
-}
-
+  }
 
   Future<String> uploadImageToFirebaseStorage(String imagePath) async {
     final fileName = DateTime.now().millisecondsSinceEpoch.toString();
@@ -120,10 +118,10 @@ Future<void> _pickImageFromGallery() async {
         'status': _selectedStatut,
         'marque': marque,
         'model': model,
-        'kilometrage': kilometrage,
+        'contact': contact,
         'description': description,
         'transmission': _selectedtransmission,
-        'carburant' : _selectedcarburants
+        'carburant': _selectedcarburants
       });
 
       // Navigate back to the homepage
@@ -166,7 +164,7 @@ Future<void> _pickImageFromGallery() async {
                 labelText: 'Marque',
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 14.0),
             TextField(
               onChanged: (value) {
                 setState(() {
@@ -177,18 +175,7 @@ Future<void> _pickImageFromGallery() async {
                 labelText: 'Model',
               ),
             ),
-            const SizedBox(height: 16.0),
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  kilometrage = value;
-                });
-              },
-              decoration: const InputDecoration(
-                labelText: 'Kilometrage',
-              ),
-            ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 14.0),
             TextField(
               onChanged: (value) {
                 setState(() {
@@ -203,6 +190,17 @@ Future<void> _pickImageFromGallery() async {
             TextField(
               onChanged: (value) {
                 setState(() {
+                  contact = value;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: 'Contact',
+              ),
+            ),
+            const SizedBox(height: 14.0),
+            TextField(
+              onChanged: (value) {
+                setState(() {
                   description = value;
                 });
               },
@@ -210,7 +208,7 @@ Future<void> _pickImageFromGallery() async {
                 labelText: 'Description',
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 14.0),
             DropdownButtonFormField<String>(
               value: _selectedcarburants,
               items: _carburants.map((String carburant) {
@@ -276,30 +274,31 @@ Future<void> _pickImageFromGallery() async {
               icon: const Icon(Icons.camera_alt),
               label: const Text('Add Images'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey, // Set the button's background color to gray
+                primary:
+                    Colors.grey, // Set the button's background color to gray
                 onPrimary: Colors.white, // Set the button's text color to white
               ),
             ),
-
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 14.0),
             if (imageUrls.isNotEmpty)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Selected Images:',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Selected Images:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8.0),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Text(imageUrls.toString()),
                   ),
-              ],
-            ),
+                ],
+              ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
               onPressed: _saveAnnouncement,
-              child: const Text('Save'),
+              child: const Text('Enregistrer'),
             ),
           ],
         ),

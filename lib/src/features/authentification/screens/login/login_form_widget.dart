@@ -13,7 +13,6 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final UserController userController = Get.find<UserController>();
     final phoneController = TextEditingController();
     final passwordController = TextEditingController();
@@ -60,8 +59,7 @@ class LoginForm extends StatelessWidget {
                 onPressed: () {
                   String phoneNo = phoneController.text;
                   String password = passwordController.text;
-                   UserController.instance.login(phoneNo, password);
-                
+                  UserController.instance.login(phoneNo, password);
                 },
                 child: Text(tLogin.toUpperCase()),
               ),
@@ -81,12 +79,12 @@ class LoginForm extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                   /* Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SignUpScreen()),
-                    );*/
-                    const SignUpScreen();
+                    );
+                    // const SignUpScreen();
                   },
                 ),
               ],

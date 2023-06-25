@@ -34,12 +34,20 @@ class HomePage extends StatelessWidget {
             final status = data['status'] ?? '';
             final marque = data['marque'] ?? '';
             final model = data['model'] ?? '';
+            final carburant = data['carburant'] ?? '';
+            final transmission = data['transmission'] ?? '';
+            final description = data['description'] ?? '';
+            final contact = data['contact'] ?? '';
 
             return Announcement(
                 imageUrls: imageUrls,
                 price: price,
                 status: status,
                 marque: marque,
+                carburant: carburant,
+                transmission: transmission,
+                description: description,
+                contact: contact,
                 model: model);
           }).toList();
 
@@ -135,16 +143,61 @@ class AnnounceSection extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    // Perform action based on the announcement's status
-                    if (announcement.status == 'En vente') {
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green
+                      ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Contact Information'),
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('Contact: ${announcement.contact}'),
+                                SizedBox(height: 16.0),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.phone),
+                                      onPressed: () {
+                                        // Handle phone icon press
+                                        // ...
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: Image.asset('assets/whatsapp.png'),
+                                      onPressed: () {
+                                        // Handle WhatsApp icon press
+                                        // ...
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            actions: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                      /*if (announcement.status == 'En vente') {
                       // Perform action for sale
                       // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => SalePage()));
                     } else if (announcement.status == 'En location') {
                       // Perform action for rental
                       // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => RentalPage()));
-                    }
-                  },
+                    }*/
                   child: Text(
                     announcement.status == 'En vente' ? 'Acheter' : 'Louer',
                   ),
