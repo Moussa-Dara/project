@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:project/src/features/authentification/controllers/user_controller.dart';
 import 'package:project/src/features/authentification/screens/login/login_screen.dart';
 import '../annonces/add_announcement.dart';
+import 'editProfile.dart';
 
 
 class ProfilePage extends StatelessWidget {
@@ -49,7 +50,10 @@ class ProfilePage extends StatelessWidget {
                                   title:
                                       const Text('Modifier Mon Profil'),
                                   onTap: () {
-                                    // Action pour modifier le profil
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) =>  const editProfile()),
+                                    );
                                   },
                                 ),
                               ),
@@ -66,9 +70,9 @@ class ProfilePage extends StatelessWidget {
                                   title: const Text('Publier une annonce'),
                                   onTap: () {
                                     Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>  const AddAnnouncementPage()),
-                                  );
+                                      context,
+                                      MaterialPageRoute(builder: (context) =>  const AddAnnouncementPage()),
+                                    );
                                   },
                                 ),
                               ),
